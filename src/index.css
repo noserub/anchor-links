@@ -8,35 +8,62 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 246 54% 97%;
+    --foreground: 213 31% 19%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 213 31% 19%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 213 31% 19%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 215 85% 52%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 215 85% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 213 12% 92%;
+    --secondary-foreground: 213 31% 19%;
+    --secondary-hover: 213 12% 88%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 213 12% 92%;
+    --muted-foreground: 213 20% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 177 70% 54%;
+    --accent-foreground: 0 0% 100%;
+    --accent-hover: 177 70% 48%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 213 27% 84%;
+    --input: 213 27% 84%;
+    --ring: 215 85% 52%;
+
+    --widget-background: 0 0% 100%;
+    --widget-border: 213 27% 84%;
+    --widget-shadow: 213 20% 55%;
+
+    --company-link-bg: 215 85% 97%;
+    --company-link-hover: 215 85% 94%;
+    --company-link-icon: 215 85% 52%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(215 85% 52%), hsl(177 70% 54%));
+    --gradient-soft: linear-gradient(135deg, hsl(215 85% 97%), hsl(177 70% 96%));
+
+    --shadow-soft: 0 2px 8px -2px hsl(var(--widget-shadow) / 0.1);
+    --shadow-medium: 0 4px 16px -4px hsl(var(--widget-shadow) / 0.15);
+    --shadow-strong: 0 8px 32px -8px hsl(var(--widget-shadow) / 0.2);
+
+    --transition-smooth: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
