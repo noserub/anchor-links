@@ -20,6 +20,7 @@ export interface LayoutSettings {
 
 export const QuickLinksWidget = () => {
   const [customLinks, setCustomLinks] = useState<CustomLink[]>([]);
+  const [companyLinksOrder, setCompanyLinksOrder] = useState<string[]>([]);
   const [layoutSettings, setLayoutSettings] = useState<LayoutSettings>({
     viewMode: 'list',
     columns: 1
@@ -33,6 +34,19 @@ export const QuickLinksWidget = () => {
       } catch (error) {
         console.error('Error loading custom links:', error);
       }
+    }
+
+    const savedCompanyOrder = localStorage.getItem('quicklinks-company-order');
+    if (savedCompanyOrder) {
+      try {
+        setCompanyLinksOrder(JSON.parse(savedCompanyOrder));
+      } catch (error) {
+        console.error('Error loading company links order:', error);
+      }
+    } else {
+      // Initialize with default order
+      const defaultOrder = ['travel', 'expenses', 'calendar', 'self-service', 'procurement', 'wifi', 'email', 'ai-chat', 'onedrive'];
+      setCompanyLinksOrder(defaultOrder);
     }
 
     const savedLayout = localStorage.getItem('quicklinks-layout');
@@ -83,6 +97,14 @@ export const QuickLinksWidget = () => {
     saveCustomLinks(result);
   };
 
+  const reorderCompanyLinks = (startIndex: number, endIndex: number) => {
+    const result = Array.from(companyLinksOrder);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+    setCompanyLinksOrder(result);
+    localStorage.setItem('quicklinks-company-order', JSON.stringify(result));
+  };
+
   const getContainerWidth = () => {
     if (layoutSettings.viewMode === 'grid' && layoutSettings.columns > 1) {
       return layoutSettings.columns === 3 ? 'max-w-6xl' : 'max-w-5xl';
@@ -114,7 +136,11 @@ export const QuickLinksWidget = () => {
             
             <div className="max-h-[700px] overflow-y-auto">
               <TabsContent value="company" className="mt-0">
-                <CompanyLinks layoutSettings={layoutSettings} />
+                <CompanyLinks 
+                  layoutSettings={layoutSettings} 
+                  linksOrder={companyLinksOrder}
+                  onReorderLinks={reorderCompanyLinks}
+                />
               </TabsContent>
               
               <TabsContent value="my-links" className="mt-0">
