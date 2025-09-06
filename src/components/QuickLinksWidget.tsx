@@ -85,9 +85,9 @@ export const QuickLinksWidget = () => {
 
   const getContainerWidth = () => {
     if (layoutSettings.viewMode === 'grid' && layoutSettings.columns > 1) {
-      return layoutSettings.columns === 3 ? 'max-w-4xl' : 'max-w-3xl';
+      return layoutSettings.columns === 3 ? 'max-w-6xl' : 'max-w-5xl';
     }
-    return 'max-w-md';
+    return 'max-w-2xl';
   };
 
   return (
