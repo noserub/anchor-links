@@ -83,13 +83,13 @@ export const DraggableLink = ({
   const opacity = isDragging ? 0.5 : 1;
 
   const getContainerClasses = () => {
-    const baseClasses = "group border border-transparent hover:border-widget-border hover:bg-secondary/50 transition-smooth rounded-md";
+    const baseClasses = "group border border-transparent hover:border-widget-border hover:bg-secondary/50 transition-smooth rounded-md flex-shrink-0";
     
     if (layoutSettings.viewMode === 'grid' && layoutSettings.columns === 3) {
-      return `${baseClasses} p-2 flex flex-col items-center text-center`;
+      return `${baseClasses} px-3 py-2 flex flex-col items-center text-center min-w-0`;
     }
     
-    return `${baseClasses} flex items-center gap-2 p-2`;
+    return `${baseClasses} flex items-center gap-2 px-4 py-2 min-w-0`;
   };
 
   if (layoutSettings.viewMode === 'grid' && layoutSettings.columns === 3) {

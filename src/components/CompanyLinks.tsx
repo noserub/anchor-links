@@ -81,13 +81,7 @@ export const CompanyLinks = ({ layoutSettings }: CompanyLinksProps) => {
       return 'space-y-1';
     }
     
-    const columnClasses = {
-      1: 'grid grid-cols-1 gap-2',
-      2: 'grid grid-cols-2 gap-2',
-      3: 'grid grid-cols-3 gap-2'
-    };
-    
-    return columnClasses[layoutSettings.columns];
+    return 'flex flex-wrap gap-2';
   };
 
   const getButtonClasses = () => {
@@ -96,8 +90,8 @@ export const CompanyLinks = ({ layoutSettings }: CompanyLinksProps) => {
     }
     
     return layoutSettings.columns === 3 
-      ? 'flex-col h-24 p-2 text-xs min-w-0' 
-      : 'justify-start h-12 p-3 text-sm min-w-0';
+      ? 'flex-col h-24 px-3 py-2 text-xs min-w-0 flex-shrink-0' 
+      : 'justify-start h-12 px-4 py-3 text-sm min-w-0 flex-shrink-0';
   };
 
   return (

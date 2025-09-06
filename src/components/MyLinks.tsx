@@ -48,13 +48,7 @@ export const MyLinks = ({
       return 'space-y-1';
     }
     
-    const columnClasses = {
-      1: 'grid grid-cols-1 gap-2',
-      2: 'grid grid-cols-2 gap-2',
-      3: 'grid grid-cols-3 gap-2'
-    };
-    
-    return columnClasses[layoutSettings.columns];
+    return 'flex flex-wrap gap-2';
   };
 
   if (links.length === 0) {
