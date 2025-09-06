@@ -96,8 +96,8 @@ export const CompanyLinks = ({ layoutSettings }: CompanyLinksProps) => {
     }
     
     return layoutSettings.columns === 3 
-      ? 'flex-col h-16 p-2 text-xs' 
-      : 'justify-start h-12 p-3';
+      ? 'flex-col h-20 p-2 text-sm' 
+      : 'justify-start h-12 p-3 text-sm';
   };
 
   return (

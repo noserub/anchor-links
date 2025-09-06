@@ -83,9 +83,16 @@ export const QuickLinksWidget = () => {
     saveCustomLinks(result);
   };
 
+  const getContainerWidth = () => {
+    if (layoutSettings.viewMode === 'grid' && layoutSettings.columns > 1) {
+      return layoutSettings.columns === 3 ? 'max-w-2xl' : 'max-w-xl';
+    }
+    return 'max-w-md';
+  };
+
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="w-full max-w-md bg-widget-background border border-widget-border rounded-lg shadow-medium transition-smooth">
+      <div className={`w-full ${getContainerWidth()} bg-widget-background border border-widget-border rounded-lg shadow-medium transition-smooth`}>
         <div className="p-4">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-foreground">Quick Links</h2>
