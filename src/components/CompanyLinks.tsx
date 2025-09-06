@@ -96,8 +96,8 @@ export const CompanyLinks = ({ layoutSettings }: CompanyLinksProps) => {
     }
     
     return layoutSettings.columns === 3 
-      ? 'flex-col h-20 p-2 text-sm' 
-      : 'justify-start h-12 p-3 text-sm';
+      ? 'flex-col h-24 p-2 text-xs min-w-0' 
+      : 'justify-start h-12 p-3 text-sm min-w-0';
   };
 
   return (
@@ -114,7 +114,7 @@ export const CompanyLinks = ({ layoutSettings }: CompanyLinksProps) => {
               <div className="p-1.5 rounded-md bg-primary/10 text-company-link-icon group-hover:bg-primary/20 transition-smooth mb-1">
                 {link.icon}
               </div>
-              <span className="font-medium text-foreground group-hover:text-primary transition-smooth leading-tight">
+              <span className="font-medium text-foreground group-hover:text-primary transition-smooth leading-tight text-center break-words">
                 {link.title}
               </span>
             </>
