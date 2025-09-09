@@ -44,11 +44,7 @@ export const MyLinks = ({
   };
 
   const getGridClasses = () => {
-    if (layoutSettings.viewMode === 'list') {
-      return 'space-y-1';
-    }
-    
-    return 'flex flex-wrap gap-2';
+    return 'space-y-1';
   };
 
   if (links.length === 0) {
@@ -63,7 +59,7 @@ export const MyLinks = ({
         </p>
         <Button 
           onClick={() => setIsAddDialogOpen(true)}
-          className="bg-gradient-primary hover:opacity-90 text-primary-foreground transition-smooth"
+          className="bg-quicklinks-add-button hover:bg-quicklinks-add-button/90 text-white transition-smooth"
         >
           <Plus className="h-4 w-4 mr-2" />
           Add Your First Link
@@ -87,7 +83,7 @@ export const MyLinks = ({
         <Button
           size="sm"
           onClick={() => setIsAddDialogOpen(true)}
-          className="bg-gradient-primary hover:opacity-90 text-primary-foreground transition-smooth h-7 text-xs"
+          className="bg-quicklinks-add-button hover:bg-quicklinks-add-button/90 text-white transition-smooth h-7 text-xs"
         >
           <Plus className="h-3 w-3 mr-1" />
           Add

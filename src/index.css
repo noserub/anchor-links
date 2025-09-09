@@ -45,13 +45,21 @@ All colors MUST be HSL.
     --input: 213 27% 84%;
     --ring: 215 85% 52%;
 
-    --widget-background: 0 0% 100%;
+    --widget-background: 42 43% 91%;
     --widget-border: 213 27% 84%;
     --widget-shadow: 213 20% 55%;
 
-    --company-link-bg: 215 85% 97%;
-    --company-link-hover: 215 85% 94%;
+    --company-link-bg: 0 0% 100%;
+    --company-link-hover: 0 0% 97%;
     --company-link-icon: 215 85% 52%;
+
+    --tab-active: 40 7% 8%;
+    --tab-inactive: 40 7% 8%;
+    --tab-inactive-opacity: 0.7;
+
+    --quicklinks-text: 40 7% 8%;
+    --quicklinks-url: 220 91% 50%;
+    --quicklinks-add-button: 26 8% 18%;
 
     --gradient-primary: linear-gradient(135deg, hsl(215 85% 52%), hsl(177 70% 54%));
     --gradient-soft: linear-gradient(135deg, hsl(215 85% 97%), hsl(177 70% 96%));
@@ -118,6 +126,15 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 

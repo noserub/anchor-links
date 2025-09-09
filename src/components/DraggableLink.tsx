@@ -83,69 +83,8 @@ export const DraggableLink = ({
   const opacity = isDragging ? 0.5 : 1;
 
   const getContainerClasses = () => {
-    const baseClasses = "group border border-transparent hover:border-widget-border hover:bg-secondary/50 transition-smooth rounded-md flex-shrink-0";
-    
-    if (layoutSettings.viewMode === 'grid' && layoutSettings.columns === 3) {
-      return `${baseClasses} px-3 py-2 flex flex-col items-center text-center min-w-0`;
-    }
-    
-    return `${baseClasses} flex items-center gap-2 px-4 py-2 min-w-0`;
+    return "group border border-transparent hover:border-widget-border hover:bg-secondary/50 transition-smooth rounded-md flex-shrink-0 flex items-center gap-3 px-3 py-3 min-w-0 w-full";
   };
-
-  if (layoutSettings.viewMode === 'grid' && layoutSettings.columns === 3) {
-    return (
-      <div
-        ref={ref}
-        style={{ opacity }}
-        data-handler-id={handlerId}
-        className={getContainerClasses()}
-      >
-        <div 
-          ref={dragRef}
-          className="cursor-move text-muted-foreground hover:text-foreground transition-smooth mb-1"
-        >
-          <GripVertical className="h-3 w-3" />
-        </div>
-        
-        <div 
-          className="flex flex-col items-center cursor-pointer flex-1"
-          onClick={onClick}
-        >
-          <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center mb-2">
-            <LinkIcon className="h-4 w-4 text-primary" />
-          </div>
-          <div className="font-medium text-xs text-foreground group-hover:text-primary transition-smooth leading-tight line-clamp-2">
-            {link.title}
-          </div>
-        </div>
-
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-smooth mt-1">
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={(e) => {
-              e.stopPropagation();
-              onEdit();
-            }}
-            className="h-6 w-6 p-0 hover:bg-secondary hover:text-primary"
-          >
-            <Edit className="h-3 w-3" />
-          </Button>
-          <Button
-            size="sm"
-            variant="ghost"
-            onClick={(e) => {
-              e.stopPropagation();
-              onDelete();
-            }}
-            className="h-6 w-6 p-0 hover:bg-destructive/10 hover:text-destructive"
-          >
-            <Trash2 className="h-3 w-3" />
-          </Button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div
@@ -156,7 +95,7 @@ export const DraggableLink = ({
     >
       <div 
         ref={dragRef}
-        className="cursor-move text-muted-foreground hover:text-foreground transition-smooth"
+        className="cursor-move text-muted-foreground hover:text-foreground transition-smooth flex-shrink-0"
       >
         <GripVertical className="h-4 w-4" />
       </div>
@@ -165,40 +104,43 @@ export const DraggableLink = ({
         className="flex-1 cursor-pointer min-w-0"
         onClick={onClick}
       >
-        <div className="flex items-center gap-2">
-          <div className="font-medium text-sm text-foreground group-hover:text-primary transition-smooth">
-            {link.title}
-          </div>
-          <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-smooth" />
+        <div className="text-base font-normal text-quicklinks-text group-hover:text-primary transition-smooth truncate line-clamp-2 leading-relaxed">
+          {link.title}
         </div>
-        <div className="text-xs text-primary/70 mt-0.5 truncate">
+        <div className="text-xs text-quicklinks-url mt-1 truncate">
           {link.url}
         </div>
       </div>
 
-      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-smooth">
-        <Button
-          size="sm"
-          variant="ghost"
-          onClick={(e) => {
-            e.stopPropagation();
-            onEdit();
-          }}
-          className="h-7 w-7 p-0 hover:bg-secondary hover:text-primary"
-        >
-          <Edit className="h-3 w-3" />
-        </Button>
-        <Button
-          size="sm"
-          variant="ghost"
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete();
-          }}
-          className="h-7 w-7 p-0 hover:bg-destructive/10 hover:text-destructive"
-        >
-          <Trash2 className="h-3 w-3" />
-        </Button>
+      <div className="flex items-center gap-2 flex-shrink-0">
+        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+          <LinkIcon className="h-4 w-4 text-primary" />
+        </div>
+        
+        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-smooth">
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit();
+            }}
+            className="h-7 w-7 p-0 hover:bg-secondary hover:text-primary"
+          >
+            <Edit className="h-3 w-3" />
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            className="h-7 w-7 p-0 hover:bg-destructive/10 hover:text-destructive"
+          >
+            <Trash2 className="h-3 w-3" />
+          </Button>
+        </div>
       </div>
     </div>
   );

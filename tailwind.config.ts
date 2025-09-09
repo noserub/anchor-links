@@ -73,6 +73,15 @@ export default {
 					hover: 'hsl(var(--company-link-hover))',
 					icon: 'hsl(var(--company-link-icon))'
 				},
+				'quicklinks': {
+					text: 'hsl(var(--quicklinks-text))',
+					url: 'hsl(var(--quicklinks-url))',
+					'add-button': 'hsl(var(--quicklinks-add-button))'
+				},
+				'tab': {
+					active: 'hsl(var(--tab-active))',
+					inactive: 'hsl(var(--tab-inactive) / var(--tab-inactive-opacity))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

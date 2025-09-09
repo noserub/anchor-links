@@ -106,16 +106,13 @@ export const QuickLinksWidget = () => {
   };
 
   const getContainerWidth = () => {
-    if (layoutSettings.viewMode === 'grid' && layoutSettings.columns > 1) {
-      return layoutSettings.columns === 3 ? 'max-w-6xl' : 'max-w-5xl';
-    }
-    return 'max-w-2xl';
+    return 'w-[310px]';
   };
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className={`w-full ${getContainerWidth()} bg-widget-background border border-widget-border rounded-lg shadow-medium transition-smooth`}>
-        <div className="p-4">
+      <div className={`${getContainerWidth()} h-[612px] bg-widget-background border border-widget-border rounded-lg shadow-medium transition-smooth flex flex-col`}>
+        <div className="p-4 flex-shrink-0">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-foreground">Quick Links</h2>
             <LayoutControls 
@@ -125,16 +122,22 @@ export const QuickLinksWidget = () => {
           </div>
           
           <Tabs defaultValue="company" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-3">
-              <TabsTrigger value="company" className="text-sm font-medium">
+            <TabsList className="grid w-full grid-cols-2 mb-3 bg-transparent border-b border-widget-border rounded-none p-0 h-auto">
+              <TabsTrigger 
+                value="company" 
+                className="text-sm font-medium data-[state=active]:text-tab-active data-[state=active]:border-b-2 data-[state=active]:border-tab-active data-[state=inactive]:text-tab-inactive rounded-none bg-transparent shadow-none pb-2"
+              >
                 Company
               </TabsTrigger>
-              <TabsTrigger value="my-links" className="text-sm font-medium">
+              <TabsTrigger 
+                value="my-links" 
+                className="text-sm font-medium data-[state=active]:text-tab-active data-[state=active]:border-b-2 data-[state=active]:border-tab-active data-[state=inactive]:text-tab-inactive rounded-none bg-transparent shadow-none pb-2"
+              >
                 My Links
               </TabsTrigger>
             </TabsList>
             
-            <div className="max-h-[700px] overflow-y-auto">
+            <div className="overflow-y-auto flex-1" style={{ maxHeight: 'calc(612px - 140px)' }}>
               <TabsContent value="company" className="mt-0">
                 <CompanyLinks 
                   layoutSettings={layoutSettings} 

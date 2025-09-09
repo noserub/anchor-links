@@ -154,15 +154,7 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
   const opacity = isDragging ? 0.5 : 1;
 
   const getButtonClasses = () => {
-    const baseClasses = 'bg-company-link-bg hover:bg-company-link-hover border border-transparent hover:border-widget-border transition-smooth group';
-    
-    if (layoutSettings.viewMode === 'list') {
-      return `${baseClasses} w-full justify-start h-10 px-3 py-2 flex items-center gap-2`;
-    }
-    
-    return layoutSettings.columns === 3 
-      ? `${baseClasses} flex-col h-24 px-3 py-2 text-xs min-w-0 flex-shrink-0 flex items-center justify-center` 
-      : `${baseClasses} justify-start h-12 px-4 py-3 text-sm min-w-0 flex-shrink-0 flex items-center gap-2`;
+    return 'bg-company-link-bg hover:bg-company-link-hover border border-transparent hover:border-widget-border transition-smooth group w-full justify-between h-auto px-3 py-3 flex items-center';
   };
 
   return (
@@ -172,37 +164,21 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
       data-handler-id={handlerId}
       className="relative group/drag"
     >
-      <div 
-        ref={dragRef}
-        className="absolute -left-2 top-1/2 -translate-y-1/2 cursor-move text-muted-foreground/50 hover:text-muted-foreground opacity-0 group-hover/drag:opacity-100 transition-all z-10"
-      >
-        <GripVertical className="h-4 w-4" />
-      </div>
       
       <Button
         variant="ghost"
         className={getButtonClasses()}
         onClick={() => onClick(link.url, link.title)}
       >
-        {layoutSettings.viewMode === 'grid' && layoutSettings.columns === 3 ? (
-          <>
-            <div className="p-1.5 rounded-md bg-primary/10 text-company-link-icon group-hover:bg-primary/20 transition-smooth mb-1">
-              {link.icon}
-            </div>
-            <span className="font-medium text-foreground group-hover:text-primary transition-smooth leading-tight text-center break-words">
-              {link.title}
-            </span>
-          </>
-        ) : (
-          <>
-            <div className="flex-shrink-0 p-1.5 rounded-md bg-primary/10 text-company-link-icon group-hover:bg-primary/20 transition-smooth">
-              {link.icon}
-            </div>
-            <span className="font-medium text-foreground group-hover:text-primary transition-smooth">
-              {link.title}
-            </span>
-          </>
-        )}
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <GripVertical className="h-4 w-4 text-muted-foreground/50 cursor-move flex-shrink-0" />
+          <span className="text-base font-normal text-quicklinks-text group-hover:text-primary transition-smooth truncate leading-relaxed">
+            {link.title}
+          </span>
+        </div>
+        <div className="flex-shrink-0 p-2 rounded-md bg-primary/10 text-company-link-icon group-hover:bg-primary/20 transition-smooth">
+          {link.icon}
+        </div>
       </Button>
     </div>
   );
@@ -231,11 +207,7 @@ export const CompanyLinks = ({ layoutSettings, linksOrder, onReorderLinks }: Com
   const orderedLinks = getOrderedLinks();
 
   const getGridClasses = () => {
-    if (layoutSettings.viewMode === 'list') {
-      return 'space-y-1';
-    }
-    
-    return 'flex flex-wrap gap-2';
+    return 'space-y-1';
   };
 
   return (
