@@ -125,13 +125,13 @@ export const QuickLinksWidget = () => {
             <TabsList className="grid w-full grid-cols-2 mb-3 bg-transparent border-b border-widget-border rounded-none p-0 h-auto">
               <TabsTrigger 
                 value="company" 
-                className="text-sm font-medium data-[state=active]:text-tab-active data-[state=active]:border-b-2 data-[state=active]:border-tab-active data-[state=inactive]:text-tab-inactive rounded-none bg-transparent shadow-none pb-2"
+                className="text-sm font-medium data-[state=active]:text-foreground data-[state=active]:bg-tab-active data-[state=active]:border-b-2 data-[state=active]:border-foreground data-[state=inactive]:text-tab-inactive rounded-none shadow-none pb-2"
               >
                 Company
               </TabsTrigger>
               <TabsTrigger 
                 value="my-links" 
-                className="text-sm font-medium data-[state=active]:text-tab-active data-[state=active]:border-b-2 data-[state=active]:border-tab-active data-[state=inactive]:text-tab-inactive rounded-none bg-transparent shadow-none pb-2"
+                className="text-sm font-medium data-[state=active]:text-foreground data-[state=active]:bg-tab-active data-[state=active]:border-b-2 data-[state=active]:border-foreground data-[state=inactive]:text-tab-inactive rounded-none shadow-none pb-2"
               >
                 My Links
               </TabsTrigger>

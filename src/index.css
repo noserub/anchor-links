@@ -53,13 +53,19 @@ All colors MUST be HSL.
     --company-link-hover: 0 0% 97%;
     --company-link-icon: 215 85% 52%;
 
-    --tab-active: 40 7% 8%;
+    --tab-active: 42 43% 91%;
     --tab-inactive: 40 7% 8%;
     --tab-inactive-opacity: 0.7;
 
     --quicklinks-text: 40 7% 8%;
     --quicklinks-url: 220 91% 50%;
     --quicklinks-add-button: 26 8% 18%;
+
+    --icon-background: 44 20% 79%;
+    --icon-foreground: 0 0% 0%;
+    --list-item: 42 23% 85%;
+    --list-item-hover: 44 19% 73%;
+    --drag-indicator: 44 19% 73%;
 
     --gradient-primary: linear-gradient(135deg, hsl(215 85% 52%), hsl(177 70% 54%));
     --gradient-soft: linear-gradient(135deg, hsl(215 85% 97%), hsl(177 70% 96%));
@@ -135,6 +141,29 @@ All colors MUST be HSL.
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  
+  .drag-drop-indicator {
+    position: relative;
+  }
+  
+  .drag-drop-indicator::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1px;
+    height: 2px;
+    background: hsl(var(--drag-indicator));
+    border-radius: 2px;
+    opacity: 0;
+    transform: scaleX(0);
+    transition: all 0.2s ease;
+  }
+  
+  .drag-drop-indicator.drag-over::before {
+    opacity: 1;
+    transform: scaleX(1);
   }
 }
 

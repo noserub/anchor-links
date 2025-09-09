@@ -154,7 +154,7 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
   const opacity = isDragging ? 0.5 : 1;
 
   const getButtonClasses = () => {
-    return 'bg-company-link-bg hover:bg-company-link-hover border border-transparent hover:border-widget-border transition-smooth group w-full justify-between h-auto px-3 py-3 flex items-center';
+    return 'bg-list-item hover:bg-list-item-hover border border-transparent transition-smooth group w-full justify-between h-auto px-3 py-3 flex items-center relative';
   };
 
   return (
@@ -176,7 +176,7 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
             {link.title}
           </span>
         </div>
-        <div className="flex-shrink-0 p-2 rounded-md bg-primary/10 text-company-link-icon group-hover:bg-primary/20 transition-smooth">
+        <div className="flex-shrink-0 p-2 rounded-md bg-icon-background text-icon-foreground transition-smooth">
           {link.icon}
         </div>
       </Button>

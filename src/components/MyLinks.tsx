@@ -50,8 +50,8 @@ export const MyLinks = ({
   if (links.length === 0) {
     return (
       <div className="text-center py-6">
-        <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-soft flex items-center justify-center">
-          <LinkIcon className="h-6 w-6 text-primary" />
+        <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-icon-background flex items-center justify-center">
+          <LinkIcon className="h-6 w-6 text-icon-foreground" />
         </div>
         <h3 className="font-medium text-foreground mb-2">No links yet</h3>
         <p className="text-sm text-muted-foreground mb-4">

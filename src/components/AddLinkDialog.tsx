@@ -160,7 +160,7 @@ export const AddLinkDialog = ({
             </Button>
             <Button 
               type="submit"
-              className="bg-gradient-primary hover:opacity-90 text-primary-foreground"
+              className="bg-quicklinks-add-button hover:bg-quicklinks-add-button/90 text-white"
             >
               {initialData ? 'Update Link' : 'Add Link'}
             </Button>

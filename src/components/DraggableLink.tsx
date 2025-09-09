@@ -83,7 +83,7 @@ export const DraggableLink = ({
   const opacity = isDragging ? 0.5 : 1;
 
   const getContainerClasses = () => {
-    return "group border border-transparent hover:border-widget-border hover:bg-secondary/50 transition-smooth rounded-md flex-shrink-0 flex items-center gap-3 px-3 py-3 min-w-0 w-full";
+    return "group bg-list-item hover:bg-list-item-hover border border-transparent transition-smooth rounded-md flex-shrink-0 flex items-center gap-3 px-3 py-3 min-w-0 w-full relative";
   };
 
   return (
@@ -113,8 +113,8 @@ export const DraggableLink = ({
       </div>
 
       <div className="flex items-center gap-2 flex-shrink-0">
-        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-          <LinkIcon className="h-4 w-4 text-primary" />
+        <div className="w-8 h-8 rounded-lg bg-icon-background flex items-center justify-center">
+          <LinkIcon className="h-4 w-4 text-icon-foreground" />
         </div>
         
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-smooth">

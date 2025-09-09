@@ -78,6 +78,15 @@ export default {
 					url: 'hsl(var(--quicklinks-url))',
 					'add-button': 'hsl(var(--quicklinks-add-button))'
 				},
+				'icon': {
+					background: 'hsl(var(--icon-background))',
+					foreground: 'hsl(var(--icon-foreground))'
+				},
+				'list-item': {
+					DEFAULT: 'hsl(var(--list-item))',
+					hover: 'hsl(var(--list-item-hover))'
+				},
+				'drag-indicator': 'hsl(var(--drag-indicator))',
 				'tab': {
 					active: 'hsl(var(--tab-active))',
 					inactive: 'hsl(var(--tab-inactive) / var(--tab-inactive-opacity))'
