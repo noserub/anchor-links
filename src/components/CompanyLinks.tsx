@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { LayoutSettings } from './QuickLinksWidget';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 
 interface CompanyLinkData {
@@ -73,7 +73,7 @@ const companyLinks: CompanyLinkData[] = [
   },
   {
     id: 'ai-chat',
-    title: 'AI Chat',
+    title: 'Chat',
     icon: <MessageSquare className="h-4 w-4" />,
     url: '#ai-chat'
   },
@@ -101,12 +101,14 @@ interface DraggableCompanyLinkProps {
 const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: DraggableCompanyLinkProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const dragRef = useRef<HTMLDivElement>(null);
+  const [dropPosition, setDropPosition] = useState<'before' | 'after' | null>(null);
 
-  const [{ handlerId }, drop] = useDrop({
+  const [{ handlerId, isOver }, drop] = useDrop({
     accept: 'company-link',
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
+        isOver: monitor.isOver(),
       };
     },
     hover(item: DragItem, monitor) {
@@ -117,6 +119,7 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
       const hoverIndex = index;
 
       if (dragIndex === hoverIndex) {
+        setDropPosition(null);
         return;
       }
 
@@ -125,6 +128,14 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
       const clientOffset = monitor.getClientOffset();
       const hoverClientY = clientOffset!.y - hoverBoundingRect.top;
 
+      // Show drop indicator
+      if (hoverClientY < hoverMiddleY) {
+        setDropPosition('before');
+      } else {
+        setDropPosition('after');
+      }
+
+      // Only perform the move when crossing the middle
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
         return;
       }
@@ -136,6 +147,9 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
       onMove(dragIndex, hoverIndex);
       item.index = hoverIndex;
     },
+    drop() {
+      setDropPosition(null);
+    },
   });
 
   const [{ isDragging }, drag] = useDrag({
@@ -146,40 +160,57 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    end: () => {
+      setDropPosition(null);
+    },
   });
 
   drop(ref);
   drag(dragRef);
 
-  const opacity = isDragging ? 0.5 : 1;
-
   const getButtonClasses = () => {
-    return 'bg-list-item hover:bg-list-item-hover border border-transparent transition-smooth group w-full justify-between h-auto px-3 py-3 flex items-center relative';
+    const baseClasses = 'bg-list-item hover:bg-list-item-hover border border-transparent transition-all duration-200 group w-full justify-between h-auto px-3 py-3 flex items-center relative rounded-md';
+    if (isDragging) {
+      return `${baseClasses} opacity-40 scale-[0.98] shadow-lg cursor-grabbing`;
+    }
+    return baseClasses;
   };
 
   return (
-    <div
-      ref={ref}
-      style={{ opacity }}
-      data-handler-id={handlerId}
-      className="relative group/drag"
-    >
+    <div className="relative">
+      {/* Drop indicator - show above */}
+      {isOver && dropPosition === 'before' && (
+        <div className="absolute -top-[2px] left-0 right-0 h-[3px] bg-drag-indicator rounded-full z-10 animate-pulse" />
+      )}
       
-      <Button
-        variant="ghost"
-        className={getButtonClasses()}
-        onClick={() => onClick(link.url, link.title)}
+      <div
+        ref={ref}
+        data-handler-id={handlerId}
+        className="relative group/drag"
       >
-        <div className="flex items-center gap-3 flex-1 min-w-0">
-          <GripVertical className="h-4 w-4 text-muted-foreground/50 cursor-move flex-shrink-0" />
-          <span className="text-base font-normal text-quicklinks-text group-hover:text-primary transition-smooth truncate leading-relaxed">
-            {link.title}
-          </span>
-        </div>
-        <div className="flex-shrink-0 p-2 rounded-md bg-icon-background text-icon-foreground transition-smooth">
-          {link.icon}
-        </div>
-      </Button>
+        <Button
+          variant="ghost"
+          className={getButtonClasses()}
+          onClick={() => onClick(link.url, link.title)}
+        >
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <div ref={dragRef} className="cursor-grab active:cursor-grabbing flex-shrink-0">
+              <GripVertical className="h-4 w-4 text-muted-foreground/50" />
+            </div>
+            <span className="text-base font-normal text-quicklinks-text group-hover:text-primary transition-smooth truncate leading-relaxed">
+              {link.title}
+            </span>
+          </div>
+          <div className="flex-shrink-0 p-2 rounded-md bg-icon-background text-icon-foreground transition-smooth">
+            {link.icon}
+          </div>
+        </Button>
+      </div>
+      
+      {/* Drop indicator - show below */}
+      {isOver && dropPosition === 'after' && (
+        <div className="absolute -bottom-[2px] left-0 right-0 h-[3px] bg-drag-indicator rounded-full z-10 animate-pulse" />
+      )}
     </div>
   );
 };

@@ -114,7 +114,7 @@ export const QuickLinksWidget = () => {
       <div className={`${getContainerWidth()} h-[612px] bg-widget-background border border-widget-border rounded-lg shadow-medium transition-smooth flex flex-col`}>
         <div className="p-4 flex-shrink-0">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-foreground">Quick Links</h2>
+            <h2 className="text-lg font-semibold text-foreground">Top links</h2>
             <LayoutControls 
               settings={layoutSettings}
               onSettingsChange={saveLayoutSettings}
