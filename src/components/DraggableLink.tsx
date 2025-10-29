@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { GripVertical, Edit, Trash2, ExternalLink, Link as LinkIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import type { CustomLink, LayoutSettings } from './QuickLinksWidget';
 
 interface DraggableLinkProps {
@@ -117,12 +118,21 @@ export const DraggableLink = ({
         data-handler-id={handlerId}
         className={getContainerClasses()}
       >
-        <div 
-          ref={dragRef}
-          className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground transition-smooth flex-shrink-0"
-        >
-          <GripVertical className="h-4 w-4" />
-        </div>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div 
+                ref={dragRef}
+                className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-foreground transition-smooth flex-shrink-0"
+              >
+                <GripVertical className="h-4 w-4" />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Drag to reorder</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         
         <div 
           className="flex-1 cursor-pointer min-w-0"

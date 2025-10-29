@@ -11,6 +11,7 @@ import {
   GripVertical 
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import type { LayoutSettings } from './QuickLinksWidget';
 import { useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
@@ -194,9 +195,18 @@ const DraggableCompanyLink = ({ link, index, layoutSettings, onMove, onClick }: 
           onClick={() => onClick(link.url, link.title)}
         >
           <div className="flex items-center gap-3 flex-1 min-w-0">
-            <div ref={dragRef} className="cursor-grab active:cursor-grabbing flex-shrink-0">
-              <GripVertical className="h-4 w-4 text-muted-foreground/50" />
-            </div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div ref={dragRef} className="cursor-grab active:cursor-grabbing flex-shrink-0">
+                    <GripVertical className="h-4 w-4 text-muted-foreground/50" />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Drag to reorder</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             <span className="text-base font-normal text-quicklinks-text group-hover:text-primary transition-smooth truncate leading-relaxed">
               {link.title}
             </span>
