@@ -74,7 +74,7 @@ const companyLinks: CompanyLinkData[] = [
   },
   {
     id: 'ai-chat',
-    title: 'Chat',
+    title: 'Generative Chat',
     icon: <MessageSquare className="h-4 w-4" />,
     url: '#ai-chat'
   },
