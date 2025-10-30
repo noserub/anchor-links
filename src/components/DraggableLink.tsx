@@ -146,35 +146,29 @@ export const DraggableLink = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-8 h-8 rounded-lg bg-icon-background flex items-center justify-center">
-            <LinkIcon className="h-4 w-4 text-icon-foreground" />
-          </div>
-          
-          <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-smooth">
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={(e) => {
-                e.stopPropagation();
-                onEdit();
-              }}
-              className="h-7 w-7 p-0 hover:bg-secondary hover:text-primary"
-            >
-              <Edit className="h-3 w-3" />
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete();
-              }}
-              className="h-7 w-7 p-0 hover:bg-destructive/10 hover:text-destructive"
-            >
-              <Trash2 className="h-3 w-3" />
-            </Button>
-          </div>
+        <div className="flex items-center gap-1 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-smooth">
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={(e) => {
+              e.stopPropagation();
+              onEdit();
+            }}
+            className="h-7 w-7 p-0 hover:bg-secondary hover:text-primary"
+          >
+            <Edit className="h-3 w-3" />
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            className="h-7 w-7 p-0 hover:bg-destructive/10 hover:text-destructive"
+          >
+            <Trash2 className="h-3 w-3" />
+          </Button>
         </div>
       </div>
       

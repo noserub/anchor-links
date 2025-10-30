@@ -133,7 +133,7 @@ export const QuickLinksWidget = () => {
                 value="my-links" 
                 className="text-sm font-medium data-[state=active]:text-foreground data-[state=active]:bg-tab-active data-[state=active]:border-b-2 data-[state=active]:border-foreground data-[state=inactive]:text-tab-inactive rounded-none shadow-none pb-2"
               >
-                My Links
+                My links
               </TabsTrigger>
             </TabsList>
             
